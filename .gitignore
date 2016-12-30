@@ -1,0 +1,14 @@
+*.iml
+*.log
+.DS_Store
+target
+node_modules/
+node
+dist
+.idea/
+.vagrant
+.classpath
+.project
+.clover
+*/.settings/*
+src/main/resources/output
