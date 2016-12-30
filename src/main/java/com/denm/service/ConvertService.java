@@ -1,6 +1,5 @@
 package com.denm.service;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 import com.denm.model.convert.ConvertFeed;

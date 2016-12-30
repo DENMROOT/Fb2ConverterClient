@@ -1,7 +1,5 @@
 package com.denm.service;
 
-import java.io.IOException;
-
 /**
  * Created by Denys_Makarov on 12/28/2016.
  */

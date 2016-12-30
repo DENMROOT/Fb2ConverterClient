@@ -1,7 +1,5 @@
 package com.denm.impl;
 
-import java.io.IOException;
-
 import org.junit.BeforeClass;
 
 import com.denm.service.ConvertService;

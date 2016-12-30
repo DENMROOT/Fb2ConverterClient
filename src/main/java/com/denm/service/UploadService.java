@@ -1,7 +1,6 @@
 package com.denm.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 import com.denm.model.upload.UploadFeed;

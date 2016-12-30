@@ -4,16 +4,12 @@ import static com.denm.service.impl.DownloadServiceImpl.RESOURCES_OUTPUT_DIR;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
