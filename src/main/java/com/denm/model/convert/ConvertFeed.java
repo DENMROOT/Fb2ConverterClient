@@ -10,6 +10,8 @@ public class ConvertFeed {
     @Key("File")
     public String file;
 
+    public String fileName;
+
     @Override
     public String toString() {
         return "ConvertFeed{" +

@@ -1,4 +1,4 @@
-package com.denm.service;
+package com.denm.completablefuture.service;
 
 /**
  * Created by Denys_Makarov on 12/28/2016.

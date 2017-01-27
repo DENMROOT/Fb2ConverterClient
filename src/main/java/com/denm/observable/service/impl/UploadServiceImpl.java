@@ -1,14 +1,13 @@
-package com.denm.service.impl;
+package com.denm.observable.service.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.denm.model.upload.UploadFeed;
-import com.denm.service.UploadService;
+import com.denm.observable.service.UploadService;
 import com.google.api.client.http.FileContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpHeaders;
@@ -33,7 +32,7 @@ public class UploadServiceImpl implements UploadService {
         this.JSON_FACTORY = JSON_FACTORY;
     }
 
-    public CompletableFuture<UploadFeed> upload(String url, File file) {
+    public UploadFeed upload(String url, File file) {
         HttpRequestFactory requestFactory =
                 HTTP_TRANSPORT.createRequestFactory(request -> request.setParser(new JsonObjectParser(JSON_FACTORY)));
         GenericUrl uploadUrl = new GenericUrl(url);
@@ -50,20 +49,21 @@ public class UploadServiceImpl implements UploadService {
                 String.format("form-data; name=\"content\"; filename=\"%s\"", file.getName())));
         content.addPart(part);
 
-        UploadFeed uploadFeed = null;
+        UploadFeed uploadFeed;
         try {
             HttpRequest request = requestFactory.buildPostRequest(uploadUrl, content);
             uploadFeed = request.execute().parseAs(UploadFeed.class);
         } catch (IOException e) {
             LOG.error("HTTP error during upload: ", e.getMessage());
-            return CompletableFuture.completedFuture(null);
+            return null;
         }
 
         if (uploadFeed.success) {
             LOG.info(uploadFeed.toString());
-            return CompletableFuture.completedFuture(uploadFeed);
+            uploadFeed.data.fileName = file.getName();
+            return uploadFeed;
         } else {
-            return CompletableFuture.completedFuture(null);
+            return null;
         }
     }
 

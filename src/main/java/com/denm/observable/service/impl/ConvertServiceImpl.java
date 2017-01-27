@@ -1,13 +1,12 @@
-package com.denm.service.impl;
+package com.denm.observable.service.impl;
 
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.denm.model.convert.ConvertFeed;
-import com.denm.service.ConvertService;
+import com.denm.observable.service.ConvertService;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
@@ -31,7 +30,7 @@ public class ConvertServiceImpl implements ConvertService {
     }
 
     @Override
-    public CompletableFuture<ConvertFeed> convert(String url, String fileId, String originalName) {
+    public ConvertFeed convert(String url, String fileId, String originalName) {
         HttpRequestFactory requestFactory =
                 HTTP_TRANSPORT.createRequestFactory(request -> request.setParser(new JsonObjectParser(JSON_FACTORY)));
         GenericUrl uploadUrl = new GenericUrl(url);
@@ -42,20 +41,21 @@ public class ConvertServiceImpl implements ConvertService {
         params.put("FromFormat", "Fb2");
         params.put("Original", originalName);
 
-        ConvertFeed convertFeed = null;
+        ConvertFeed convertFeed;
         try {
             HttpRequest request = requestFactory.buildPostRequest(uploadUrl, new UrlEncodedContent(params));
             convertFeed = request.execute().parseAs(ConvertFeed.class);
         } catch (IOException e) {
             LOG.error("HTTP error during converting: ", e.getMessage());
-            return CompletableFuture.completedFuture(null);
+            return null;
         }
 
         if (convertFeed.success) {
             LOG.info(convertFeed.toString());
-            return CompletableFuture.completedFuture(convertFeed);
+            convertFeed.fileName = originalName;
+            return convertFeed;
         } else {
-            return CompletableFuture.completedFuture(null);
+            return null;
         }
     }
 

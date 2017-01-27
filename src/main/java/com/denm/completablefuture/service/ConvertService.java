@@ -1,4 +1,4 @@
-package com.denm.service;
+package com.denm.completablefuture.service;
 
 import java.util.concurrent.CompletableFuture;
 
