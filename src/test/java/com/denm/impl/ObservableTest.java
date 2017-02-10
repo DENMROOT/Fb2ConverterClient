@@ -53,7 +53,7 @@ public class ObservableTest extends TestBase{
                 .flatMap(i -> uploadFile(i).subscribeOn(scheduler));
 
         Observable<ConvertFeed> converts = uploads
-                .flatMap(i -> convertFile(i.data.id, i.data.fileName).subscribeOn(scheduler));
+                .flatMap(i -> convertFile(i.data.id, i.data.fileName).subscribeOn(Schedulers.computation()));
 
         converts
                 .doOnNext(i -> download(i.file, i.fileName).subscribeOn(scheduler))
