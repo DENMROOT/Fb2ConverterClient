@@ -1,4 +1,4 @@
-package com.denm.service.impl;
+package com.denm.completablefuture.service.impl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.denm.service.DownloadService;
+import com.denm.completablefuture.service.DownloadService;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;

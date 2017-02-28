@@ -13,6 +13,8 @@ public class UploadData {
     @Key
     public String ds;
 
+    public String fileName;
+
     @Override
     public String toString() {
         return "UploadData{" +
