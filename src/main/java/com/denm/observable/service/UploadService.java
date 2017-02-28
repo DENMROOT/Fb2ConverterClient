@@ -8,5 +8,5 @@ import com.denm.model.upload.UploadFeed;
  * Created by Denys_Makarov on 12/28/2016.
  */
 public interface UploadService {
-    UploadFeed upload(String url, File file);
+    UploadFeed upload(File file);
 }

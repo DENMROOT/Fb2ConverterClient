@@ -23,6 +23,7 @@ import com.google.api.client.util.GenericData;
  * Created by Denys_Makarov on 12/28/2016.
  */
 public class DownloadServiceImpl implements DownloadService {
+    private final static String DOWNLOAD_URL = "http://go4convert.com/process/download";
     private final static Logger LOG = LoggerFactory.getLogger(DownloadServiceImpl.class);
     public static final String RESOURCES_OUTPUT_DIR = "src\\main\\resources\\output\\";
 
@@ -35,10 +36,10 @@ public class DownloadServiceImpl implements DownloadService {
     }
 
     @Override
-    public void download(String url, String fileId, String originalName) {
+    public void download(String fileId, String originalName) {
         HttpRequestFactory requestFactory =
                 HTTP_TRANSPORT.createRequestFactory(request -> request.setParser(new JsonObjectParser(JSON_FACTORY)));
-        GenericUrl uploadUrl = new GenericUrl(url);
+        GenericUrl uploadUrl = new GenericUrl(DOWNLOAD_URL);
 
         GenericData params = new GenericData();
         params.put("doc", fileId);
