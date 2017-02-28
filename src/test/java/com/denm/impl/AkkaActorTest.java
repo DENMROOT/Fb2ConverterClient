@@ -53,7 +53,6 @@ public class AkkaActorTest {
                     @Override public void onComplete(final Throwable exception,
                                                      final String result) {
                         System.out.println(result);
-
                     }
                 };
 

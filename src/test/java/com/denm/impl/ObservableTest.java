@@ -65,7 +65,7 @@ public class ObservableTest extends TestBase{
     }
 
     UploadFeed upload(File file) {
-        return uploadService.upload(UPLOAD_URL, file);
+        return uploadService.upload(file);
     }
 
     Observable<ConvertFeed> convertFile(String id, String fileName) {
@@ -73,11 +73,11 @@ public class ObservableTest extends TestBase{
     }
 
     ConvertFeed convert(String id, String fileName) {
-        return convertService.convert(CONVERT_URL, id, fileName);
+        return convertService.convert(id, fileName);
     }
 
     Observable<Void> download(String id, String fileName) {
-        downloadService.download(DOWNLOAD_URL, id, fileName);
+        downloadService.download(id, fileName);
         return Observable.empty();
     }
 }

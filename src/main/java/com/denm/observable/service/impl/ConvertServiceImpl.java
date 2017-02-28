@@ -20,6 +20,7 @@ import com.google.api.client.util.GenericData;
  * Created by Denys_Makarov on 12/28/2016.
  */
 public class ConvertServiceImpl implements ConvertService {
+    private final static String CONVERT_URL = "http://go4convert.com/base/convert";
     private final static Logger LOG = LoggerFactory.getLogger(ConvertServiceImpl.class);
     private HttpTransport HTTP_TRANSPORT;
     private  JsonFactory JSON_FACTORY;
@@ -30,10 +31,10 @@ public class ConvertServiceImpl implements ConvertService {
     }
 
     @Override
-    public ConvertFeed convert(String url, String fileId, String originalName) {
+    public ConvertFeed convert(String fileId, String originalName) {
         HttpRequestFactory requestFactory =
                 HTTP_TRANSPORT.createRequestFactory(request -> request.setParser(new JsonObjectParser(JSON_FACTORY)));
-        GenericUrl uploadUrl = new GenericUrl(url);
+        GenericUrl uploadUrl = new GenericUrl(CONVERT_URL);
 
         GenericData params = new GenericData();
         params.put("File", fileId);

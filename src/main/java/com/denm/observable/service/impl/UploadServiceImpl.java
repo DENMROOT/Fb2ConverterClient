@@ -23,6 +23,7 @@ import com.google.api.client.json.JsonObjectParser;
  * Created by Denys_Makarov on 12/28/2016.
  */
 public class UploadServiceImpl implements UploadService {
+    static final String UPLOAD_URL = "http://go4convert.com/process/upload";
     private final static Logger LOG = LoggerFactory.getLogger(UploadServiceImpl.class);
     private  HttpTransport HTTP_TRANSPORT;
     private JsonFactory JSON_FACTORY;
@@ -32,10 +33,10 @@ public class UploadServiceImpl implements UploadService {
         this.JSON_FACTORY = JSON_FACTORY;
     }
 
-    public UploadFeed upload(String url, File file) {
+    public UploadFeed upload(File file) {
         HttpRequestFactory requestFactory =
                 HTTP_TRANSPORT.createRequestFactory(request -> request.setParser(new JsonObjectParser(JSON_FACTORY)));
-        GenericUrl uploadUrl = new GenericUrl(url);
+        GenericUrl uploadUrl = new GenericUrl(UPLOAD_URL);
 
         MultipartContent content = new MultipartContent().setMediaType(
                 new HttpMediaType("multipart/form-data")
